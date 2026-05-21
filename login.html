@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — ExamGoEasy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+<!-- Aurora + Glass Bubbles Background -->
+<div class="bg-layer" aria-hidden="true">
+  <!-- Aurora waves -->
+  <div class="aurora"></div>
+  <div class="aurora-2"></div>
+  <div class="aurora-shimmer"></div>
+  <!-- Glass bubbles -->
+  <div class="bubble bubble-1"></div>
+  <div class="bubble bubble-2"></div>
+  <div class="bubble bubble-3"></div>
+  <div class="bubble bubble-4"></div>
+  <div class="bubble bubble-5"></div>
+  <div class="bubble bubble-6"></div>
+  <!-- Floating particles -->
+  <div class="particle" style="width:5px;height:5px;top:22%;left:18%;--pd:11s;"></div>
+  <div class="particle" style="width:4px;height:4px;top:55%;left:8%;--pd:14s;animation-delay:-5s;"></div>
+  <div class="particle" style="width:6px;height:6px;top:70%;left:30%;--pd:9s;animation-delay:-2s;"></div>
+  <div class="particle" style="width:3px;height:3px;top:15%;left:45%;--pd:13s;animation-delay:-7s;opacity:0.15;"></div>
+  <div class="particle" style="width:5px;height:5px;top:40%;left:62%;--pd:10s;animation-delay:-4s;"></div>
+</div>
+
+<div id="toast-container"></div>
+<div id="modal-container"></div>
+
+<div id="screen-landing">
+  <div class="login-viewport">
+    <div class="login-slide-container" id="login-slide-container">
+
+      <!-- ════════════ SLIDE 1 — STUDENT ════════════ -->
+      <div class="login-slide">
+
+        <div class="login-left">
+          <div class="blob blob-teal-1"></div>
+          <div class="blob blob-teal-2"></div>
+          <div class="dot-grid" style="width:130px;height:110px;top:35%;right:29%;"></div>
+
+          <!-- Need Help -->
+          <div class="login-need-help">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+              <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/>
+              <path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+            </svg>
+            Need Help?
+          </div>
+
+          <!-- Logo -->
+          <div class="login-brand">
+            <img src="main_logo.png" alt="ExamGoEasy" class="login-brand-logo">
+          </div>
+
+          <!-- Headline -->
+          <h1 class="login-headline">
+            <span class="headline-line-1">Smart Exams.</span>
+            <span class="headline-line-2">Better Future.</span>
+          </h1>
+
+          <p class="login-tagline">A secure, intelligent and seamless platform for modern online examinations.</p>
+
+          <!-- Stats -->
+          <div class="login-stats">
+            <div class="login-stat">
+              <div class="login-stat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2" stroke-linecap="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </div>
+              <div>
+                <span class="login-stat-value">50K+</span>
+                <span class="login-stat-label">Students</span>
+              </div>
+            </div>
+            <div class="login-stat">
+              <div class="login-stat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2" stroke-linecap="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14,2 14,8 20,8"/>
+                  <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+                </svg>
+              </div>
+              <div>
+                <span class="login-stat-value">1200+</span>
+                <span class="login-stat-label">Exams Created</span>
+              </div>
+            </div>
+            <div class="login-stat">
+              <div class="login-stat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2" stroke-linecap="round">
+                  <circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/>
+                </svg>
+              </div>
+              <div>
+                <span class="login-stat-value">99%</span>
+                <span class="login-stat-label">Uptime</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero: feature cards + perf card -->
+          <div class="login-hero">
+
+            <div class="login-features">
+              <div class="login-feature">
+                <div class="login-feature-icon lfi-blue">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="#6366f1">
+                    <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7l-9-5z"/>
+                    <polyline points="9,12 11,14 15,10" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div class="login-feature-text">
+                  <h4>Secure &amp; Reliable</h4>
+                  <p>Your data and exams are protected with enterprise-grade security.</p>
+                </div>
+              </div>
+              <div class="login-feature">
+                <div class="login-feature-icon lfi-green">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <rect x="2"  y="14" width="4" height="8"  rx="1" fill="#10b981"/>
+                    <rect x="8"  y="9"  width="4" height="13" rx="1" fill="#34d399"/>
+                    <rect x="14" y="5"  width="4" height="17" rx="1" fill="#6366f1"/>
+                    <rect x="20" y="2"  width="4" height="20" rx="1" fill="#818cf8"/>
+                  </svg>
+                </div>
+                <div class="login-feature-text">
+                  <h4>Smart Evaluation</h4>
+                  <p>Get instant results with detailed performance analytics.</p>
+                </div>
+              </div>
+              <div class="login-feature">
+                <div class="login-feature-icon lfi-orange">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="#f97316">
+                    <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+                    <path d="M5 13.18V17l7 4 7-3.82V13.18L12 17l-7-3.82z" fill="#fb923c"/>
+                  </svg>
+                </div>
+                <div class="login-feature-text">
+                  <h4>Learn &amp; Improve</h4>
+                  <p>Track your progress and focus on what matters most.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Performance card -->
+            <div class="login-perf-card">
+              <div class="login-perf-title">Performance Overview</div>
+              <div class="login-perf-period">This Month ▾</div>
+              <div class="login-perf-donut-wrap">
+                <div class="login-perf-donut">
+                  <svg viewBox="0 0 74 74">
+                    <circle cx="37" cy="37" r="29" fill="none" stroke="#ede9fe" stroke-width="11"/>
+                    <circle class="donut-progress" cx="37" cy="37" r="29" fill="none"
+                      stroke="url(#dg)" stroke-width="11"
+                      stroke-linecap="round" transform="rotate(-90 37 37)"/>
+                    <defs>
+                      <linearGradient id="dg" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#6c63ff"/>
+                        <stop offset="100%" stop-color="#a78bfa"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div class="login-perf-donut-label">
+                    <span class="login-perf-donut-pct">85%</span>
+                    <span class="login-perf-donut-sub">Overall Score</span>
+                  </div>
+                </div>
+                <div class="login-perf-stats">
+                  <div><div class="login-perf-stat-key">Tests Taken</div><div class="login-perf-stat-val">24</div></div>
+                  <div><div class="login-perf-stat-key">Average Score</div><div class="login-perf-stat-val">85%</div></div>
+                  <div><div class="login-perf-stat-key">Rank</div><div class="login-perf-stat-val">#12</div></div>
+                </div>
+              </div>
+              <svg viewBox="0 0 175 36" fill="none" preserveAspectRatio="none" style="width:100%;height:36px;display:block;margin-top:4px;">
+                <defs>
+                  <linearGradient id="lg" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#6c63ff" stop-opacity="0.20"/>
+                    <stop offset="100%" stop-color="#6c63ff" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <path d="M0 28 C22 26,36 19,56 21 C76 23,92 12,112 14 C132 16,150 7,165 5 L175 4 L175 36 L0 36 Z" fill="url(#lg)"/>
+                <path class="perf-line-path" d="M0 28 C22 26,36 19,56 21 C76 23,92 12,112 14 C132 16,150 7,165 5 L175 4"
+                  stroke="#6c63ff" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+                <circle class="perf-dot" cx="175" cy="4" r="4.5" fill="#6c63ff"/>
+              </svg>
+            </div>
+
+          </div><!-- /login-hero -->
+
+          <!-- SSL -->
+          <div class="login-left-footer">
+            <div class="login-footer-shield">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2" stroke-linecap="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <polyline points="9,12 11,14 15,10"/>
+              </svg>
+            </div>
+            <div>
+              <strong>256-bit SSL Encrypted</strong>
+              <span>Your data is safe with us</span>
+            </div>
+          </div>
+        </div><!-- /login-left -->
+
+        <!-- RIGHT -->
+        <div class="login-right">
+          <div class="login-form-wrap">
+            <div class="login-form-icon">🎓</div>
+            <div class="login-form-title">Welcome Back</div>
+            <div class="login-form-sub">Login to access your exam dashboard</div>
+
+            <div class="lf-error" id="s-error"></div>
+
+            <div class="lf-group">
+              <div class="lf-input-wrap">
+                <span class="lf-input-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                  </svg>
+                </span>
+                <input class="lf-input" id="s-username" type="text" placeholder="Username"
+                  autocomplete="off" onkeydown="if(event.key==='Enter')doLogin('student')">
+              </div>
+            </div>
+
+            <div class="lf-group">
+              <div class="lf-input-wrap">
+                <span class="lf-input-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                  </svg>
+                </span>
+                <input class="lf-input" id="s-password" type="password" placeholder="Password"
+                  autocomplete="off" onkeydown="if(event.key==='Enter')doLogin('student')">
+                <span class="lf-input-eye" onclick="togglePwd('s-password',this)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </span>
+              </div>
+              <div class="lf-hint">Default: student1 / student123</div>
+            </div>
+
+            <div class="lf-row-between">
+              <label class="lf-remember">
+                <input type="checkbox" id="s-remember"> Remember me
+              </label>
+              <button class="lf-forgot" onclick="toast('Password reset coming soon','info')">Forgot password?</button>
+            </div>
+
+            <button class="lf-btn" id="signin-btn" onclick="handleSignIn(this)">
+              <div class="btn-spinner"></div>
+              <span class="btn-text">Sign In →</span>
+            </button>
+
+            <div class="lf-divider">or continue with</div>
+
+            <div class="lf-social-row">
+              <button class="lf-social-btn" onclick="toast('Google login coming soon','info')">
+                <svg viewBox="0 0 24 24" width="18" height="18">
+                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                </svg>
+                Google
+              </button>
+              <button class="lf-social-btn" onclick="toast('Microsoft login coming soon','info')">
+                <svg viewBox="0 0 24 24" width="18" height="18">
+                  <rect x="1"    y="1"    width="10.5" height="10.5" fill="#F25022"/>
+                  <rect x="12.5" y="1"    width="10.5" height="10.5" fill="#7FBA00"/>
+                  <rect x="1"    y="12.5" width="10.5" height="10.5" fill="#00A4EF"/>
+                  <rect x="12.5" y="12.5" width="10.5" height="10.5" fill="#FFB900"/>
+                </svg>
+                Microsoft
+              </button>
+            </div>
+
+            <div class="lf-toggle-row">
+              <span>Need an account? </span>
+              <button class="lf-toggle-link" onclick="toast('Registration coming soon','info')">Register here</button>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /slide 1 -->
+
+    </div>
+  </div>
+</div>
+
+<script src="../../shared/js/utils.js"></script>
+<script src="login.js"></script>
+<script>
+/* ─── Animated stat counters ─── */
+function animateCounter(el, target, suffix, duration) {
+  const start = performance.now();
+  const update = (now) => {
+    const elapsed = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - elapsed, 3);
+    const val = Math.round(eased * target);
+    el.textContent = val >= 1000 ? (val/1000).toFixed(0)+'K+' : val + suffix;
+    if (elapsed < 1) requestAnimationFrame(update);
+    else el.textContent = target >= 1000 ? (target/1000).toFixed(0)+'K+' : target + suffix;
+  };
+  requestAnimationFrame(update);
+}
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const vals = [
+      { el: document.querySelectorAll('.login-stat-value')[0], target: 50,   suffix: 'K+', dur: 1200 },
+      { el: document.querySelectorAll('.login-stat-value')[1], target: 1200, suffix: '+',  dur: 1400 },
+      { el: document.querySelectorAll('.login-stat-value')[2], target: 99,   suffix: '%',  dur: 1000 },
+    ];
+    vals.forEach(({ el, target, suffix, dur }) => {
+      if (el) animateCounter(el, target, suffix, dur);
+    });
+  }, 700);
+});
+
+/* ─── Button ripple effect ─── */
+document.querySelectorAll('.lf-btn').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    const r = document.createElement('span');
+    const rect = this.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    r.style.cssText = `
+      position:absolute;
+      width:${size}px;height:${size}px;
+      left:${e.clientX - rect.left - size/2}px;
+      top:${e.clientY - rect.top - size/2}px;
+      background:rgba(255,255,255,0.25);
+      border-radius:50%;
+      transform:scale(0);
+      animation:rippleAnim 0.55s ease-out forwards;
+      pointer-events:none;
+    `;
+    this.appendChild(r);
+    setTimeout(() => r.remove(), 600);
+  });
+});
+
+/* ─── Sign In with loading state ─── */
+function handleSignIn(btn) {
+  const username = document.getElementById('s-username').value.trim();
+  const password = document.getElementById('s-password').value;
+  const errEl    = document.getElementById('s-error');
+
+  if (!username || !password) {
+    errEl.textContent = 'Please enter username and password.';
+    const wrap = errEl.closest('.login-form-wrap');
+    if (wrap) {
+      wrap.style.animation = 'none';
+      void wrap.offsetWidth;
+      wrap.style.animation = 'shake 0.4s ease';
+      setTimeout(() => wrap.style.animation = '', 400);
+    }
+    return;
+  }
+
+  errEl.textContent = '';
+
+  /* Show loading state */
+  btn.classList.add('loading');
+  const btnText = btn.querySelector('.btn-text');
+  if (btnText) btnText.textContent = 'Signing in…';
+
+  /* Simulate auth delay then call real login */
+  setTimeout(() => {
+    doLogin('student');
+    /* If login fails (stays on page) — reset button */
+    setTimeout(() => {
+      btn.classList.remove('loading');
+      if (btnText) btnText.textContent = 'Sign In →';
+    }, 600);
+  }, 900);
+}
+
+/* ─── Input shake on error (for Enter-key login) ─── */
+const origLogin = window.doLogin;
+window.doLogin = function(role) {
+  origLogin(role);
+  const errId = role === 'admin' ? 'a-error' : 's-error';
+  const err = document.getElementById(errId);
+  if (err && err.textContent) {
+    const wrap = err.closest('.login-form-wrap');
+    if (wrap) {
+      wrap.style.animation = 'none';
+      void wrap.offsetWidth;
+      wrap.style.animation = 'shake 0.4s ease';
+      setTimeout(() => wrap.style.animation = '', 400);
+    }
+  }
+};
+</script>
+<style>
+/* Ripple keyframe */
+@keyframes rippleAnim {
+  to { transform: scale(2.5); opacity: 0; }
+}
+/* Shake on error */
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20%      { transform: translateX(-6px); }
+  40%      { transform: translateX(6px); }
+  60%      { transform: translateX(-4px); }
+  80%      { transform: translateX(4px); }
+}
+/* Number count flash */
+.login-stat-value {
+  transition: color 0.3s;
+}
+</style>
+</body>
+</html>
