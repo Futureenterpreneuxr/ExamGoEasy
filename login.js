@@ -1,5 +1,20 @@
 'use strict';
 
+/* ── Backdrop-filter repaint fix ──
+   Canvas paints async — blur has nothing to sample on first frame.
+   After first rAF confirms canvas is painted, force a style recalc
+   on the card so backdrop-filter re-samples the now-painted canvas. */
+window.addEventListener('load', function () {
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      var card = document.querySelector('.login-form-wrap');
+      if (!card) return;
+      card.style.backdropFilter = 'blur(60px) saturate(200%)';
+      card.style.webkitBackdropFilter = 'blur(60px) saturate(200%)';
+    });
+  });
+});
+
 function toggleLoginPanel(showExaminer) {
   const container = document.getElementById('login-slide-container');
   if (showExaminer) {
@@ -23,6 +38,7 @@ function doLogin(role) {
 
   if (!username || !password) {
     errEl.textContent = 'Please enter username and password.';
+    shakeCard(isAdmin ? 'a' : 's');
     return;
   }
   errEl.textContent = '';
@@ -33,13 +49,22 @@ function doLogin(role) {
 
   if (isAdmin) {
     const admin = defaultAdmins.find(a => a.username === username && a.password === password);
-    if (!admin) { errEl.textContent = 'Invalid credentials.'; return; }
+    if (!admin) { errEl.textContent = 'Invalid credentials.'; shakeCard('a'); return; }
     sessionStorage.setItem('ege_user', JSON.stringify(admin));
     window.location.href = '../../admin/dashboard/admin-dashboard.html';
   } else {
     const student = defaultStudents.find(s => s.username === username && s.password === password);
-    if (!student) { errEl.textContent = 'Invalid credentials.'; return; }
+    if (!student) { errEl.textContent = 'Invalid credentials.'; shakeCard('s'); return; }
     sessionStorage.setItem('ege_user', JSON.stringify(student));
     window.location.href = '../dashboard/dashboard.html';
   }
+}
+
+function shakeCard(prefix) {
+  const card = document.querySelector('.login-form-wrap');
+  if (!card) return;
+  card.classList.remove('card-shake');
+  void card.offsetWidth; // reflow to restart animation
+  card.classList.add('card-shake');
+  setTimeout(() => card.classList.remove('card-shake'), 700);
 }
