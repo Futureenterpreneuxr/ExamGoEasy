@@ -1,599 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login — ExamGoEasy</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="login.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Under Construction</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background: linear-gradient(135deg, #0f172a, #1e293b, #111827);
+      overflow:hidden;
+      color:white;
+    }
+
+    /* Animated background circles */
+    .circle{
+      position:absolute;
+      border-radius:50%;
+      background: rgba(255,255,255,0.08);
+      animation: float 10s infinite ease-in-out;
+    }
+
+    .circle:nth-child(1){
+      width:200px;
+      height:200px;
+      top:10%;
+      left:10%;
+    }
+
+    .circle:nth-child(2){
+      width:300px;
+      height:300px;
+      bottom:10%;
+      right:10%;
+      animation-duration:14s;
+    }
+
+    .circle:nth-child(3){
+      width:150px;
+      height:150px;
+      bottom:20%;
+      left:20%;
+      animation-duration:12s;
+    }
+
+    @keyframes float{
+      0%,100%{
+        transform:translateY(0px);
+      }
+      50%{
+        transform:translateY(-30px);
+      }
+    }
+
+    .container{
+      position:relative;
+      z-index:2;
+      text-align:center;
+      padding:50px;
+      background: rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.15);
+      backdrop-filter: blur(12px);
+      border-radius:20px;
+      width:90%;
+      max-width:700px;
+      box-shadow:0 10px 40px rgba(0,0,0,0.4);
+    }
+
+    .icon{
+      font-size:80px;
+      margin-bottom:20px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce{
+      0%,100%{
+        transform:translateY(0);
+      }
+      50%{
+        transform:translateY(-10px);
+      }
+    }
+
+    h1{
+      font-size:3rem;
+      margin-bottom:15px;
+      letter-spacing:2px;
+    }
+
+    p{
+      font-size:1.2rem;
+      color:#d1d5db;
+      line-height:1.6;
+      margin-bottom:25px;
+    }
+
+    .timer{
+      display:inline-block;
+      padding:15px 30px;
+      border-radius:50px;
+      background:#22c55e;
+      color:white;
+      font-weight:bold;
+      font-size:1.1rem;
+      box-shadow:0 5px 20px rgba(34,197,94,0.5);
+    }
+
+    .loader{
+      margin:30px auto 0;
+      width:80%;
+      height:12px;
+      background:rgba(255,255,255,0.1);
+      border-radius:20px;
+      overflow:hidden;
+    }
+
+    .loader span{
+      display:block;
+      height:100%;
+      width:70%;
+      background:linear-gradient(90deg,#38bdf8,#22c55e);
+      animation: loading 3s infinite;
+      border-radius:20px;
+    }
+
+    @keyframes loading{
+      0%{
+        width:0%;
+      }
+      100%{
+        width:100%;
+      }
+    }
+
+    footer{
+      margin-top:25px;
+      font-size:0.9rem;
+      color:#9ca3af;
+    }
+
+    @media(max-width:600px){
+      h1{
+        font-size:2rem;
+      }
+
+      p{
+        font-size:1rem;
+      }
+
+      .icon{
+        font-size:60px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- Single canvas replaces all bubble divs -->
-<canvas id="bg-canvas" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
 
-<div id="toast-container"></div>
-<div id="modal-container"></div>
+  <div class="container">
+    <div class="icon">🚧</div>
 
-<div id="screen-landing">
-  <div class="login-viewport">
-    <div class="login-slide-container" id="login-slide-container">
+    <h1>Website Under Construction</h1>
 
-      <!-- ════════════ SLIDE 1 — STUDENT ════════════ -->
-      <div class="login-slide">
+    <p>
+      We're currently improving the website experience.<br>
+      Some features may not work properly right now.
+    </p>
 
-        <div class="login-left">
-          <div class="blob blob-teal-1"></div>
-          <div class="blob blob-teal-2"></div>
-          <div class="dot-grid" style="width:130px;height:110px;top:35%;right:29%;"></div>
-
-          <!-- Need Help -->
-          <div class="login-need-help">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-              <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
-              <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/>
-              <path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
-            </svg>
-            Need Help?
-          </div>
-
-          <!-- Logo -->
-          <div class="login-brand">
-            <img src="main_logo.png" alt="ExamGoEasy" class="login-brand-logo">
-          </div>
-
-          <!-- Headline -->
-          <h1 class="login-headline">
-            <span class="headline-line-1">Identify Mistakes.</span>
-            <span class="headline-line-2">Improve Every Time.</span>
-          </h1>
-
-          <p class="login-tagline">Detailed test analysis that helps you learn, improve and achieve more.</p>
-
-          <!-- 4 Glass Pill Tags -->
-          <div class="login-mini-cards">
-            <div class="login-mini-card">
-              <div class="login-mini-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-                  <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
-                </svg>
-              </div>
-              <div class="login-mini-text">
-                <h4>Mistake Analysis</h4>
-                <p>Learn from your mistakes.</p>
-              </div>
-            </div>
-            <div class="login-mini-card">
-              <div class="login-mini-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-                </svg>
-              </div>
-              <div class="login-mini-text">
-                <h4>Weak Topic</h4>
-                <p>Focus on what needs work.</p>
-              </div>
-            </div>
-            <div class="login-mini-card">
-              <div class="login-mini-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
-                </svg>
-              </div>
-              <div class="login-mini-text">
-                <h4>Performance</h4>
-                <p>Track your test results.</p>
-              </div>
-            </div>
-            <div class="login-mini-card">
-              <div class="login-mini-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
-                </svg>
-              </div>
-              <div class="login-mini-text">
-                <h4>Smart Ranking</h4>
-                <p>See where you stand.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- SSL -->
-          <div class="login-left-footer">
-            <div class="login-footer-shield">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2" stroke-linecap="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                <polyline points="9,12 11,14 15,10"/>
-              </svg>
-            </div>
-            <div>
-              <strong>256-bit SSL Encrypted</strong>
-              <span>Your data is safe with us</span>
-            </div>
-          </div>
-        </div><!-- /login-left -->
-
-        <!-- RIGHT -->
-        <div class="login-right">
-          <div class="login-form-wrap">
-            <div class="login-form-icon">🎓</div>
-            <div class="login-form-title">Welcome Back</div>
-            <div class="login-form-sub">Login to access your exam dashboard</div>
-
-            <div class="lf-error" id="s-error"></div>
-
-            <div class="lf-group">
-              <div class="lf-input-wrap">
-                <span class="lf-input-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-                  </svg>
-                </span>
-                <input class="lf-input" id="s-username" type="text" placeholder="Username"
-                  autocomplete="off" onkeydown="if(event.key==='Enter')doLogin('student')">
-              </div>
-            </div>
-
-            <div class="lf-group">
-              <div class="lf-input-wrap">
-                <span class="lf-input-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                    <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                  </svg>
-                </span>
-                <input class="lf-input" id="s-password" type="password" placeholder="Password"
-                  autocomplete="off" onkeydown="if(event.key==='Enter')doLogin('student')">
-                <span class="lf-input-eye" onclick="togglePwd('s-password',this)">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
-                  </svg>
-                </span>
-              </div>
-              <div class="lf-hint"></div>
-            </div>
-
-            <div class="lf-row-between">
-              <label class="lf-remember">
-                <input type="checkbox" id="s-remember"> Remember me
-              </label>
-              <button class="lf-forgot" onclick="toast('Password reset coming soon','info')">Forgot password?</button>
-            </div>
-
-            <button class="lf-btn" id="signin-btn" onclick="handleSignIn(this)">
-              <div class="btn-spinner"></div>
-              <span class="btn-text">Sign In →</span>
-            </button>
-
-            <div class="lf-divider">or continue with</div>
-
-            <div class="lf-social-row">
-              <button class="lf-social-btn" onclick="toast('Google login coming soon','info')">
-                <svg viewBox="0 0 24 24" width="18" height="18">
-                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
-                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                </svg>
-                Google
-              </button>
-              <button class="lf-social-btn" onclick="toast('Microsoft login coming soon','info')">
-                <svg viewBox="0 0 24 24" width="18" height="18">
-                  <rect x="1"    y="1"    width="10.5" height="10.5" fill="#F25022"/>
-                  <rect x="12.5" y="1"    width="10.5" height="10.5" fill="#7FBA00"/>
-                  <rect x="1"    y="12.5" width="10.5" height="10.5" fill="#00A4EF"/>
-                  <rect x="12.5" y="12.5" width="10.5" height="10.5" fill="#FFB900"/>
-                </svg>
-                Microsoft
-              </button>
-            </div>
-
-            <div class="lf-toggle-row">
-              <span>Need an account? </span>
-              <button class="lf-toggle-link" onclick="toast('Registration coming soon','info')">Register here</button>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /slide 1 -->
-
+    <div class="timer">
+      ⚡ Expected Fix Time: Within a Few Hours
     </div>
+
+    <div class="loader">
+      <span></span>
+    </div>
+
+    <footer>
+      Thank you for your patience ❤️
+    </footer>
   </div>
-</div>
 
-
-<script src="../../shared/js/utils.js"></script>
-<script src="login.js"></script>
-<script>
-/* ═══════════════════════════════════════════════
-   CANVAS BACKGROUND ENGINE v4 — PHYSICS BOUNCE
-   Bubbles rise from bottom, bounce top+bottom, loop infinite
-   GPU-friendly, 60fps locked, zero DOM cost
-═══════════════════════════════════════════════ */
-(function() {
-  'use strict';
-  const canvas = document.getElementById('bg-canvas');
-  const ctx    = canvas.getContext('2d', { alpha: true });
-  let raf;
-  const DPR = Math.min(window.devicePixelRatio || 1, 2);
-
-  let VW = 0, VH = 0;
-  function resize() {
-    VW = window.innerWidth; VH = window.innerHeight;
-    canvas.width  = VW * DPR;
-    canvas.height = VH * DPR;
-    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-  }
-  window.addEventListener('resize', resize);
-  resize();
-
-  /* ── Mouse / touch tracking for vortex pull ── */
-  const MOUSE = { x: -9999, y: -9999, active: false };
-  window.addEventListener('mousemove', e => { MOUSE.x = e.clientX; MOUSE.y = e.clientY; MOUSE.active = true; });
-  window.addEventListener('mouseleave', () => { MOUSE.active = false; });
-  window.addEventListener('touchmove', e => {
-    MOUSE.x = e.touches[0].clientX; MOUSE.y = e.touches[0].clientY; MOUSE.active = true;
-  }, { passive: true });
-  window.addEventListener('touchend', () => { MOUSE.active = false; });
-
-  const LAYER_ALPHA = [0.55, 0.75, 1.0];
-
-  const SPECS = [
-    { xf:.88, r:130, layer:0 }, { xf:.06, r:100, layer:1 },
-    { xf:.42, r: 65, layer:2 }, { xf:.90, r: 88, layer:0 },
-    { xf:.26, r: 48, layer:2 }, { xf:.10, r: 42, layer:1 },
-    { xf:.46, r: 75, layer:0 }, { xf:.07, r: 56, layer:2 },
-    { xf:.52, r: 36, layer:1 }, { xf:.94, r: 60, layer:2 },
-    { xf:.22, r: 44, layer:0 }, { xf:.68, r: 32, layer:1 },
-    /* +4 large */
-    { xf:.33, r:115, layer:0 }, { xf:.72, r: 92, layer:1 },
-    { xf:.58, r: 78, layer:2 }, { xf:.15, r:105, layer:0 },
-    /* +3 small */
-    { xf:.80, r: 38, layer:1 }, { xf:.37, r: 30, layer:2 },
-    { xf:.63, r: 34, layer:0 },
-  ];
-
-  const BUBBLES = SPECS.map(s => {
-    const speedMult = [0.48, 0.72, 1.0][s.layer];
-    const baseSpeed = 28 + s.r * 0.18 + Math.random() * 12;
-    return {
-      xf: s.xf, r: s.r, layer: s.layer,
-      y:  VH * (0.1 + Math.random() * 0.85),
-      vy: -(baseSpeed * speedMult),
-      vx: (Math.random() - 0.5) * 14 * speedMult,
-      swayAmp:  18 + Math.random() * 22,
-      swayFreq: 0.00038 + Math.random() * 0.00022,
-      swayPh:   Math.random() * Math.PI * 2,
-      breathPh: Math.random() * Math.PI * 2,
-      squish: 1.0, squash: 1.0, squishT: 0,
-      _x: 0, _y: 0, _breath: 1,
-    };
-  });
-
-  function stepBubbles(dt, now) {
-    BUBBLES.forEach(b => {
-      /* ── Vortex pull toward mouse ── */
-      if (MOUSE.active) {
-        const dx = MOUSE.x - b._x;
-        const dy = MOUSE.y - b._y;
-        const dist2 = dx*dx + dy*dy;
-        const RADIUS = 280; /* influence radius px */
-        if (dist2 < RADIUS * RADIUS && dist2 > 1) {
-          const dist  = Math.sqrt(dist2);
-          /* Strength falls off with distance — closer = stronger pull */
-          const str   = (1 - dist / RADIUS) * (1 - dist / RADIUS);
-          /* Layer 2 (front) feels it most, layer 0 (back) least */
-          const layerMult = [0.30, 0.55, 0.85][b.layer];
-          const force = str * 55 * layerMult; /* px/s pull */
-          b.vy += (dy / dist) * force * dt;
-          /* Gentle x drift toward cursor too */
-          b.xf += (dx / dist) * force * 0.18 * dt / VW;
-          b.xf = Math.max(0.02, Math.min(0.98, b.xf));
-        }
-      }
-
-      b.y += b.vy * dt;
-      const sx = b.swayAmp * Math.sin(now * b.swayFreq + b.swayPh);
-      if (b.y - b.r < 0) {
-        b.y = b.r; b.vy = Math.abs(b.vy);
-        b.squish = 1.22; b.squash = 0.82; b.squishT = 0;
-      }
-      if (b.y + b.r > VH) {
-        b.y = VH - b.r; b.vy = -Math.abs(b.vy);
-        b.squish = 0.82; b.squash = 1.22; b.squishT = 0;
-      }
-      /* Speed clamp — vortex should never make bubbles crazy fast */
-      b.vy = Math.max(-180, Math.min(180, b.vy));
-
-      const rawX = VW * b.xf + sx;
-      b._x = ((rawX % VW) + VW) % VW;
-      b._y = b.y;
-      b.squishT += dt * 4.5;
-      const decay = Math.exp(-b.squishT * 3.2);
-      b.squish = 1 + (b.squish - 1) * decay;
-      b.squash = 1 + (b.squash - 1) * decay;
-      b._breath = 1 + 0.035 * Math.sin(now * 0.00055 + b.breathPh);
-    });
-  }
-
-  function resolveCollisions() {
-    for (let i = 0; i < BUBBLES.length; i++) {
-      for (let j = i + 1; j < BUBBLES.length; j++) {
-        const a = BUBBLES[i], b = BUBBLES[j];
-        const dx = b._x - a._x, dy = b._y - a._y;
-        const dist2 = dx*dx + dy*dy;
-        const minD  = a.r + b.r + 6;
-        if (dist2 < minD * minD && dist2 > 0.01) {
-          const dist = Math.sqrt(dist2);
-          const push = (minD - dist) / minD * 10;
-          const nx = dx/dist, ny = dy/dist;
-          a._x -= nx * push * 0.4; a._y -= ny * push * 0.4;
-          b._x += nx * push * 0.4; b._y += ny * push * 0.4;
-        }
-      }
-    }
-  }
-
-  function drawBubble(x, y, r, squish, squash, alpha) {
-    ctx.save();
-    ctx.globalAlpha = alpha;
-    ctx.translate(x, y);
-    ctx.scale(squish, squash);
-    const fill = ctx.createRadialGradient(-r*.22, -r*.25, r*.03, 0, 0, r);
-    fill.addColorStop(0,   'rgba(225,210,255,.42)');
-    fill.addColorStop(.38, 'rgba(180,150,255,.26)');
-    fill.addColorStop(.72, 'rgba(140,90,248,.13)');
-    fill.addColorStop(1,   'rgba(108,99,255,.03)');
-    ctx.beginPath(); ctx.arc(0, 0, r, 0, Math.PI*2);
-    ctx.fillStyle = fill; ctx.fill();
-    ctx.beginPath(); ctx.arc(0, 0, r, 0, Math.PI*2);
-    ctx.strokeStyle = 'rgba(255,255,255,.30)';
-    ctx.lineWidth = 1.2; ctx.stroke();
-    const shine = ctx.createRadialGradient(-r*.28, -r*.28, 0, -r*.16, -r*.16, r*.50);
-    shine.addColorStop(0,  'rgba(255,255,255,.58)');
-    shine.addColorStop(.5, 'rgba(255,255,255,.10)');
-    shine.addColorStop(1,  'transparent');
-    ctx.beginPath(); ctx.arc(0, 0, r, 0, Math.PI*2);
-    ctx.fillStyle = shine; ctx.fill();
-    ctx.beginPath();
-    ctx.ellipse(0, r*.58, r*.26, r*.08, 0, 0, Math.PI*2);
-    ctx.fillStyle = 'rgba(255,255,255,.15)'; ctx.fill();
-    ctx.restore();
-  }
-
-  let auroraAngle = 0;
-  function drawAurora(vw, vh) {
-    const cx = vw*.5, cy = vh*.5, maxR = Math.max(vw, vh);
-    const g1 = ctx.createRadialGradient(
-      cx + Math.cos(auroraAngle*.8)*vw*.28, cy + Math.sin(auroraAngle*.6)*vh*.22, 0,
-      cx, cy, maxR*.85);
-    g1.addColorStop(0,  'rgba(167,139,250,.16)');
-    g1.addColorStop(.4, 'rgba(139,92,246,.08)');
-    g1.addColorStop(1,  'transparent');
-    ctx.fillStyle = g1; ctx.fillRect(0,0,vw,vh);
-    const g2 = ctx.createRadialGradient(
-      cx + Math.cos(-auroraAngle*.5+1.2)*vw*.32, cy + Math.sin(-auroraAngle*.7+.8)*vh*.28, 0,
-      cx, cy, maxR*.65);
-    g2.addColorStop(0,  'rgba(196,181,253,.13)');
-    g2.addColorStop(.5, 'rgba(167,139,250,.06)');
-    g2.addColorStop(1,  'transparent');
-    ctx.fillStyle = g2; ctx.fillRect(0,0,vw,vh);
-    const g3 = ctx.createRadialGradient(
-      vw*.14 + Math.sin(auroraAngle*.4)*vw*.08, vh*.86 + Math.cos(auroraAngle*.3)*vh*.07, 0,
-      vw*.14, vh*.86, maxR*.40);
-    g3.addColorStop(0,  'rgba(139,92,246,.10)');
-    g3.addColorStop(.6, 'rgba(108,99,255,.03)');
-    g3.addColorStop(1,  'transparent');
-    ctx.fillStyle = g3; ctx.fillRect(0,0,vw,vh);
-  }
-
-  const STARS = []; let nextStar = 2200;
-  function spawnStar(vw, vh) {
-    const fromTop = Math.random() < .5;
-    STARS.push({
-      x: fromTop ? Math.random()*vw*.7 : -10,
-      y: fromTop ? -10 : Math.random()*vh*.5,
-      vx: Math.cos(Math.PI*.18 + Math.random()*Math.PI*.14) * (vw*.55 + Math.random()*vw*.25),
-      vy: Math.sin(Math.PI*.18 + Math.random()*Math.PI*.14) * (vw*.55 + Math.random()*vw*.25),
-      len: 90 + Math.random()*80, life:0, maxLife:.9,
-    });
-  }
-  function drawStars(now, dt, vw, vh) {
-    if (now > nextStar) { spawnStar(vw,vh); nextStar = now + 4500 + Math.random()*4500; }
-    for (let i = STARS.length-1; i >= 0; i--) {
-      const s = STARS[i]; s.life += dt;
-      const p = s.life / s.maxLife;
-      if (p >= 1) { STARS.splice(i,1); continue; }
-      const fade = p<.15 ? p/.15 : p>.70 ? (1-p)/.30 : 1;
-      const cx = s.x + s.vx*s.life, cy = s.y + s.vy*s.life;
-      const spd = Math.sqrt(s.vx*s.vx+s.vy*s.vy);
-      const tl = Math.min(s.life*spd/s.len,1)*s.len;
-      const tx = cx-(s.vx/spd)*tl, ty = cy-(s.vy/spd)*tl;
-      const g = ctx.createLinearGradient(tx,ty,cx,cy);
-      g.addColorStop(0,  'rgba(196,181,253,0)');
-      g.addColorStop(.6, `rgba(196,181,253,${.42*fade})`);
-      g.addColorStop(1,  `rgba(255,255,255,${.88*fade})`);
-      ctx.beginPath(); ctx.moveTo(tx,ty); ctx.lineTo(cx,cy);
-      ctx.strokeStyle=g; ctx.lineWidth=1.5; ctx.lineCap='round'; ctx.stroke();
-      ctx.beginPath(); ctx.arc(cx,cy,2,0,Math.PI*2);
-      ctx.fillStyle=`rgba(255,255,255,${.9*fade})`; ctx.fill();
-    }
-  }
-
-  const PARTS = Array.from({length:18},()=>({
-    xp:Math.random(), yp:Math.random(), r:Math.random()*1.8+.8,
-    vy:(Math.random()*.22+.10)*(Math.random()<.5?1:-1),
-    vx:Math.random()*.12-.06, ph:Math.random()*Math.PI*2, op:Math.random()*.15+.05,
-  }));
-  function drawParticles(now, vw, vh) {
-    PARTS.forEach(p => {
-      const x = ((p.xp*vw+p.vx*now*.038)%vw+vw)%vw;
-      const y = ((p.yp*vh+p.vy*now*.038)%vh+vh)%vh;
-      const pulse = .6+.4*Math.sin(now*.00095+p.ph);
-      ctx.beginPath(); ctx.arc(x,y,p.r,0,Math.PI*2);
-      ctx.fillStyle=`rgba(139,92,246,${p.op*pulse})`; ctx.fill();
-    });
-  }
-
-  /* ════════════════════════════════════════════
-     SINE WAVE FLOOR — 3 layered glowing waves at bottom
-     Each wave: different freq, speed, amplitude, alpha
-     Pure canvas path — single draw call per wave
-  ════════════════════════════════════════════ */
-  const WAVE_LAYERS = [
-    /* amp(px), freq, speed(rad/s), color, lineW, alpha */
-    { amp: 22, freq: 0.010, speed: 0.00090, col: '139,92,246',  lw: 2.2, a: 0.28 },
-    { amp: 14, freq: 0.017, speed: 0.00130, col: '167,139,250', lw: 1.4, a: 0.20 },
-    { amp:  9, freq: 0.026, speed: 0.00180, col: '196,181,253', lw: 1.0, a: 0.14 },
-  ];
-
-  function drawWaveFloor(now, vw, vh) {
-    const baseY = vh - 56; /* floor anchor — 56px from bottom */
-
-    WAVE_LAYERS.forEach((w, wi) => {
-      /* Glow pass — wide blurred line illusion via shadow */
-      ctx.save();
-      ctx.shadowBlur  = 14 - wi * 3;
-      ctx.shadowColor = `rgba(${w.col},${w.a * 1.4})`;
-      ctx.globalAlpha = w.a;
-      ctx.strokeStyle = `rgba(${w.col},1)`;
-      ctx.lineWidth   = w.lw;
-      ctx.lineCap     = 'round';
-      ctx.lineJoin    = 'round';
-      ctx.beginPath();
-      const step = 4; /* px between sample points — 4px plenty smooth */
-      for (let x = 0; x <= vw; x += step) {
-        /* Combine two sine harmonics for organic shape */
-        const y = baseY
-          - w.amp * Math.sin(x * w.freq + now * w.speed)
-          - w.amp * 0.35 * Math.sin(x * w.freq * 1.8 - now * w.speed * 0.7 + wi);
-        if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-      }
-      ctx.stroke();
-      ctx.restore();
-
-      /* Fill area under wave — subtle gradient glow toward bottom */
-      ctx.save();
-      ctx.globalAlpha = w.a * 0.25;
-      ctx.beginPath();
-      for (let x = 0; x <= vw; x += step) {
-        const y = baseY
-          - w.amp * Math.sin(x * w.freq + now * w.speed)
-          - w.amp * 0.35 * Math.sin(x * w.freq * 1.8 - now * w.speed * 0.7 + wi);
-        if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-      }
-      ctx.lineTo(vw, vh); ctx.lineTo(0, vh); ctx.closePath();
-      const grad = ctx.createLinearGradient(0, baseY - w.amp, 0, vh);
-      grad.addColorStop(0,   `rgba(${w.col},0.22)`);
-      grad.addColorStop(0.5, `rgba(${w.col},0.08)`);
-      grad.addColorStop(1,   `rgba(${w.col},0)`);
-      ctx.fillStyle = grad;
-      ctx.fill();
-      ctx.restore();
-    });
-  }
-
-  let lastNow = 0;
-  function render(now) {
-    const dt = Math.min((now-lastNow)/1000, .05);
-    lastNow = now;
-    ctx.clearRect(0,0,VW,VH);
-    auroraAngle += .0024;
-    drawAurora(VW,VH);
-    stepBubbles(dt,now);
-    resolveCollisions();
-    [0,1,2].forEach(layer => {
-      BUBBLES.forEach(b => {
-        if (b.layer !== layer) return;
-        drawBubble(b._x, b._y, b.r*b._breath, b.squish, b.squash, LAYER_ALPHA[layer]);
-      });
-    });
-    drawStars(now,dt,VW,VH);
-    drawParticles(now,VW,VH);
-    drawWaveFloor(now,VW,VH);
-    raf = requestAnimationFrame(render);
-  }
-  raf = requestAnimationFrame(render);
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) { cancelAnimationFrame(raf); lastNow=0; }
-    else raf = requestAnimationFrame(render);
-  });
-})();
-/* ─── Stat counters ─── */
-function animateCounter(el,target,suffix,dur) {
-  const s=performance.now();
-  const u=(now)=>{
-    const p=Math.min((now-s)/dur,1), e=1-Math.pow(1-p,3), v=Math.round(e*target);
-    el.textContent=v>=1000?(v/1000).toFixed(0)+'K+':v+suffix;
-    if(p<1)requestAnimationFrame(u);
-    else el.textContent=target>=1000?(target/1000).toFixed(0)+'K+':target+suffix;
-  };
-  requestAnimationFrame(u);
-}
-window.addEventListener('load',()=>{
-  setTimeout(()=>{
-    const d=[
-      {el:document.querySelectorAll('.login-stat-value')[0],target:50,  suffix:'K+',dur:1200},
-      {el:document.querySelectorAll('.login-stat-value')[1],target:1200,suffix:'+', dur:1400},
-      {el:document.querySelectorAll('.login-stat-value')[2],target:99,  suffix:'%', dur:1000},
-    ];
-    d.forEach(({el,target,suffix,dur})=>{if(el)animateCounter(el,target,suffix,dur);});
-  },700);
-});
-
-/* ─── Ripple ─── */
-document.querySelectorAll('.lf-btn').forEach(btn=>{
-  btn.addEventListener('click',function(e){
-    const r=document.createElement('span');
-    const rect=this.getBoundingClientRect();
-    const size=Math.max(rect.width,rect.height);
-    r.style.cssText=`position:absolute;width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px;background:rgba(255,255,255,.25);border-radius:50%;transform:scale(0);animation:rippleAnim .55s ease-out forwards;pointer-events:none;`;
-    this.appendChild(r);
-    setTimeout(()=>r.remove(),600);
-  });
-});
-
-/* ─── Shake helper ─── */
-function shakeFormCard() {
-  const w = document.querySelector('.login-form-wrap');
-  if (!w) return;
-  w.classList.remove('card-shake');
-  void w.offsetWidth;
-  w.classList.add('card-shake');
-  setTimeout(() => w.classList.remove('card-shake'), 750);
-}
-
-/* ─── Sign In ─── */
-function handleSignIn(btn) {
-  const u = document.getElementById('s-username').value.trim();
-  const p = document.getElementById('s-password').value;
-  const e = document.getElementById('s-error');
-
-  if (!u || !p) {
-    e.textContent = 'Please enter your username and password.';
-    shakeFormCard();
-    return;
-  }
-
-  // Check credentials directly — no delay, no double call
-  const defaultStudents = [{ id:'s1', username:'student1', password:'student123', name:'Arjun Kumar', role:'student' }];
-  const student = defaultStudents.find(s => s.username === u && s.password === p);
-  if (!student) {
-    e.textContent = 'Incorrect username or password.';
-    shakeFormCard();
-    return;
-  }
-
-  e.textContent = '';
-  btn.classList.add('loading');
-  const t = btn.querySelector('.btn-text');
-  if (t) t.textContent = 'Signing in…';
-  setTimeout(() => {
-    sessionStorage.setItem('ege_user', JSON.stringify(student));
-    window.location.href = '../dashboard/dashboard.html';
-  }, 900);
-}
-</script>
 </body>
 </html>
