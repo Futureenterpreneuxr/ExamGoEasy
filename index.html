@@ -1,8 +1,296 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta http-equiv="refresh" content="0; url=login.html">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ExamGoEasy | Exams, made simple. Coming Feb 2027</title>
+  <meta name="description" content="ExamGoEasy is a computer-based testing platform that makes conducting, giving and checking exams simple. Launching 15 February 2027.">
+  <meta name="theme-color" content="#F8FAFD">
+  <meta property="og:title" content="ExamGoEasy | Exams, made simple">
+  <meta property="og:description" content="Conduct, give and check exams without the stress. Launching 15 February 2027.">
+  <meta property="og:type" content="website">
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="cursor-glow" id="glow" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="#top" class="logo" aria-label="ExamGoEasy home">
+        <span class="logo__mark">E</span>
+        <span class="logo__text">ExamGoEasy</span>
+      </a>
+      <nav class="nav__links" aria-label="Main">
+        <a href="#problem">Problem</a>
+        <a href="#product">Product</a>
+        <a href="#how">How it works</a>
+        <a href="#faq">FAQ</a>
+        <a href="#join" class="btn btn--sm" data-magnetic>Get early access</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero__bg" aria-hidden="true">
+        <i class="orb orb--1"></i><i class="orb orb--2"></i><i class="orb orb--3"></i>
+        <div class="grid-lines"></div>
+      </div>
+
+      <div class="container hero__inner">
+        <span class="pill reveal"><span class="dot"></span>Launching 15 February 2027</span>
+
+        <h1 class="hero__title">
+          <span class="line"><span>Exams, made simple</span></span>
+          <span class="line"><span><em>for everyone involved.</em></span></span>
+        </h1>
+
+        <p class="hero__sub reveal">
+          ExamGoEasy is a computer-based testing platform for schools, institutes and companies. Conduct, give and check exams without the stress.
+        </p>
+
+        <form class="form js-form reveal" novalidate>
+          <input type="email" name="email" placeholder="Your email address" required aria-label="Email address" autocomplete="email">
+          <button type="submit" class="btn" data-magnetic>Notify me</button>
+        </form>
+        <p class="form__msg js-msg" role="status"></p>
+
+        <!-- COUNTDOWN -->
+        <div class="countdown reveal" id="countdown" role="timer" aria-label="Time left until launch">
+          <div class="cd__cell"><strong id="cd-days">--</strong><span>Days</span></div>
+          <div class="cd__cell"><strong id="cd-hours">--</strong><span>Hours</span></div>
+          <div class="cd__cell"><strong id="cd-mins">--</strong><span>Minutes</span></div>
+          <div class="cd__cell"><strong id="cd-secs">--</strong><span>Seconds</span></div>
+        </div>
+        <p class="cd__note" id="cd-note">Syncing with internet time...</p>
+      </div>
+
+      <!-- PRODUCT PREVIEW -->
+      <div class="container product-wrap" id="product">
+        <div class="product" id="product-card" aria-hidden="true">
+          <div class="product__bar">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <span class="product__title">Mock Test 04 &middot; Physics</span>
+            <span class="timer-chip">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2.5h6"/></svg>
+              <b id="mock-timer">42:18</b>
+            </span>
+          </div>
+          <div class="product__body">
+            <aside class="palette">
+              <small>Questions</small>
+              <div class="palette__grid">
+                <i class="done">1</i><i class="done">2</i><i class="done">3</i><i class="done">4</i><i class="flag">5</i>
+                <i class="done">6</i><i class="now">7</i><i>8</i><i>9</i><i>10</i>
+                <i>11</i><i>12</i><i>13</i><i>14</i><i>15</i>
+                <i>16</i><i>17</i><i>18</i><i>19</i><i>20</i>
+              </div>
+              <div class="legend"><span><u class="l-done"></u>Answered</span><span><u class="l-flag"></u>Review</span></div>
+            </aside>
+            <div class="question">
+              <small>Question 7 of 20</small>
+              <h3>Which law says an object keeps moving at the same speed unless a force acts on it?</h3>
+              <ul class="options">
+                <li class="chosen"><b>A</b>Newton's first law</li>
+                <li><b>B</b>Newton's second law</li>
+                <li><b>C</b>Newton's third law</li>
+                <li><b>D</b>Law of gravitation</li>
+              </ul>
+              <div class="question__foot">
+                <div class="bar"><i></i></div>
+                <span class="btn-mini">Next</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="chip chip--a" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg>
+          Checked automatically
+        </div>
+        <div class="chip chip--b" aria-hidden="true">
+          <small>Sample score</small><strong>92%</strong>
+        </div>
+        <p class="product__note">Product preview. The final design may change.</p>
+      </div>
+    </section>
+
+    <!-- AUDIENCE -->
+    <section class="audience" aria-label="Who it is for">
+      <div class="container audience__inner reveal">
+        <span class="audience__label">Being built for</span>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><path d="M3 10l9-5 9 5-9 5-9-5z"/><path d="M7 12.5V17c0 1 2.2 2.5 5 2.5s5-1.5 5-2.5v-4.5"/></svg>Schools</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 5h16v11H4z"/><path d="M8 20h8M12 16v4"/></svg>Coaching institutes</li>
+          <li><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11"/><path d="M9 20v-6h6v6"/></svg>Universities</li>
+          <li><svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M9 7V5h6v2"/></svg>Companies</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section class="section" id="problem">
+      <div class="container problem">
+        <div class="problem__head reveal">
+          <span class="eyebrow">The problem</span>
+          <h2>Exams are still harder than they need to be.</h2>
+          <p>Every institute faces the same pain, again and again, exam after exam.</p>
+        </div>
+        <ol class="problem__list">
+          <li class="reveal">
+            <span class="num">01</span>
+            <div><h3>Checking takes days</h3><p>Teachers lose hours on manual checking, and students wait too long for results.</p></div>
+          </li>
+          <li class="reveal">
+            <span class="num">02</span>
+            <div><h3>Conducting is heavy work</h3><p>Printing, seating, supervision and paperwork turn every exam into a big task.</p></div>
+          </li>
+          <li class="reveal">
+            <span class="num">03</span>
+            <div><h3>Fairness is hard to protect</h3><p>Cheating and checking mistakes hurt honest students the most.</p></div>
+          </li>
+          <li class="reveal">
+            <span class="num">04</span>
+            <div><h3>Marks do not show the full story</h3><p>A score alone does not tell a teacher where a student needs help.</p></div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- FEATURES: BENTO -->
+    <section class="section section--tint" id="features">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">What we are building</span>
+          <h2>One calm place for the whole exam.</h2>
+          <p>From the first question to the final report.</p>
+        </div>
+
+        <div class="bento">
+          <article class="tile tile--a reveal">
+            <h3>Create an exam in minutes</h3>
+            <p>Add questions, set the time and schedule it. No printing, no paperwork.</p>
+            <div class="viz viz--build" aria-hidden="true">
+              <div class="qrow"><span class="tag">MCQ</span><i style="--w:78%"></i></div>
+              <div class="qrow"><span class="tag">True / False</span><i style="--w:56%"></i></div>
+              <div class="qrow"><span class="tag">Short answer</span><i style="--w:68%"></i></div>
+              <div class="qadd">+ Add question</div>
+            </div>
+          </article>
+
+          <article class="tile tile--b reveal">
+            <h3>Automatic checking</h3>
+            <p>Answers are checked right after submit.</p>
+            <ul class="viz viz--check" aria-hidden="true">
+              <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><i></i></li>
+              <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><i></i></li>
+              <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><i></i></li>
+            </ul>
+          </article>
+
+          <article class="tile tile--c reveal">
+            <h3>Built-in timer</h3>
+            <p>Fair time for every student.</p>
+            <div class="viz viz--ring" aria-hidden="true">
+              <svg viewBox="0 0 100 100"><circle class="ring-bg" cx="50" cy="50" r="40"/><circle class="ring-fg" cx="50" cy="50" r="40"/></svg>
+              <b>45:00</b>
+            </div>
+          </article>
+
+          <article class="tile tile--d reveal">
+            <h3>Clear reports</h3>
+            <p>See how a class or a single student is doing, and where to help.</p>
+            <div class="viz viz--bars" aria-hidden="true">
+              <i style="--h:38%"></i><i style="--h:62%"></i><i style="--h:48%"></i><i style="--h:80%"></i><i style="--h:66%"></i><i style="--h:92%"></i><i style="--h:74%"></i>
+              <span>Sample data</span>
+            </div>
+          </article>
+
+          <article class="tile tile--e reveal">
+            <h3>Fair and secure exams</h3>
+            <p>Tools to protect honest students are part of our plan.</p>
+            <div class="viz viz--shield" aria-hidden="true">
+              <span class="pulse"></span><span class="pulse"></span>
+              <svg viewBox="0 0 24 24"><path d="M12 3l7 3v5.5c0 4.2-2.9 7.9-7 9.5-4.1-1.6-7-5.3-7-9.5V6l7-3z"/><path d="M9 12l2.2 2.2L15.5 10"/></svg>
+            </div>
+          </article>
+
+          <article class="tile tile--f reveal">
+            <h3>Easy for every student</h3>
+            <p>A clean exam screen that is simple to read and simple to use.</p>
+            <div class="viz viz--type" aria-hidden="true">
+              <span style="font-size:1.1rem">Aa</span><span style="font-size:1.7rem">Aa</span><span style="font-size:2.4rem">Aa</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW -->
+    <section class="section" id="how">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">How it will work</span>
+          <h2>Three simple steps.</h2>
+        </div>
+        <div class="steps">
+          <div class="step reveal"><span class="step__n">01</span><h3>Create</h3><p>Add your questions and set the exam time.</p></div>
+          <div class="step reveal"><span class="step__n">02</span><h3>Conduct</h3><p>Students take the exam on a computer.</p></div>
+          <div class="step reveal"><span class="step__n">03</span><h3>Check</h3><p>Get results and reports without the wait.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section--tint" id="faq">
+      <div class="container faq">
+        <div class="section__head reveal">
+          <span class="eyebrow">Questions</span>
+          <h2>Good to know.</h2>
+        </div>
+        <div class="faq__list reveal">
+          <details><summary>When does ExamGoEasy launch?</summary><p>We are launching on 15 February 2027. Join the list and we will email you on launch day.</p></details>
+          <details><summary>Who is it for?</summary><p>Schools, coaching institutes, universities and companies that conduct exams, and the students who take them.</p></details>
+          <details><summary>How much will it cost?</summary><p>Pricing is not final yet. We will share it before launch, and early-access members will hear first.</p></details>
+          <details><summary>Where is ExamGoEasy available?</summary><p>We are starting in India, with plans to serve more countries later.</p></details>
+          <details><summary>What happens to my email?</summary><p>We use it only to tell you about the launch and early access.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOIN -->
+    <section class="join" id="join">
+      <div class="join__bg" aria-hidden="true"><i class="orb orb--j1"></i><i class="orb orb--j2"></i></div>
+      <div class="container join__inner reveal">
+        <h2>Be first in line.</h2>
+        <p>Get early access and a launch-day email on 15 February 2027.</p>
+        <form class="form form--dark js-form" novalidate>
+          <input type="email" name="email" placeholder="Your email address" required aria-label="Email address" autocomplete="email">
+          <button type="submit" class="btn btn--light" data-magnetic>Join the list</button>
+        </form>
+        <p class="form__msg js-msg" role="status"></p>
+        <p class="join__count" id="waitlist-count" hidden></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="#top" class="logo logo--light" aria-label="ExamGoEasy home"><span class="logo__mark">E</span><span class="logo__text">ExamGoEasy</span></a>
+      <small>&copy; <span id="year">2026</span> ExamGoEasy. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
