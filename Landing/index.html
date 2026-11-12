@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>ExamGoEasy | Classes, homework and tests for private tutors. Launching soon.</title>
+  <meta name="description" content="ExamGoEasy is a platform for private tutors. Schedule classes, set homework and run tests, and let the system check the work and share results. Launching soon.">
+  <meta name="theme-color" content="#06525c">
+  <meta property="og:title" content="ExamGoEasy | Classes, homework and tests for private tutors">
+  <meta property="og:description" content="Schedule classes, set homework and run tests, all from one place. Launching soon.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon.png" type="image/png" sizes="384x384">
+  <link rel="apple-touch-icon" href="assets/app-icon.png">
+  <script>
+    (function () {
+      var r = document.documentElement;
+      r.classList.add('js');
+      try {
+        var force = location.search.indexOf('intro') > -1;
+        var calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!calm && (force || !sessionStorage.getItem('ege-intro'))) {
+          sessionStorage.setItem('ege-intro', '1');
+          r.classList.add('has-intro');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js" defer></script>
+</head>
+<body>
+
+<div class="intro" aria-hidden="true">
+  <svg viewBox="0 0 71 52" focusable="false"><path d="M0 0L11 0L11 52L0 52Z"/><path d="M17 0L71 0L62 12L17 12Z"/><path d="M17 18L60 18L51 30L17 30Z"/><path d="M17 36L49 36L40 48L17 48Z"/></svg>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="tick" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+</svg>
+
+<a class="skip" href="#top">Skip to content</a>
+
+<header class="bar">
+  <a class="mark" href="#top" aria-label="ExamGoEasy, back to the top"><img src="assets/logo-paper.svg" alt="ExamGoEasy" width="421" height="120"></a>
+  <nav class="bar__nav" aria-label="Page sections">
+    <a href="#product">Product</a>
+    <a href="#features">Features</a>
+    <a href="#hours">Time saved</a>
+    <a href="#week">Your week</a>
+  </nav>
+  <a class="btn btn--paper" href="#notify">Notify me</a>
+</header>
+
+<main id="top">
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="art art--hero" aria-hidden="true">
+      <svg class="shape c-sun" viewBox="0 0 96 36" style="--x:6%;--y:14%;--w:120px;--r:-8deg;--n:1" focusable="false"><use href="assets/memphis.svg#squiggle"/></svg>
+      <svg class="shape c-coral spin" viewBox="0 0 48 48" style="--x:22%;--y:26%;--w:44px;--r:0deg;--n:2" focusable="false"><use href="assets/memphis.svg#plus"/></svg>
+      <svg class="shape c-sky" viewBox="0 0 60 60" style="--x:3%;--y:40%;--w:64px;--r:0deg;--n:3" focusable="false"><use href="assets/memphis.svg#dots"/></svg>
+      <svg class="shape c-coral" viewBox="0 0 80 40" style="--x:80%;--y:12%;--w:100px;--r:14deg;--n:4" focusable="false"><use href="assets/memphis.svg#half"/></svg>
+      <svg class="shape c-sun spin" viewBox="0 0 64 64" style="--x:92%;--y:26%;--w:56px;--r:0deg;--n:5" focusable="false"><use href="assets/memphis.svg#ring"/></svg>
+      <svg class="shape c-sky" viewBox="0 0 64 56" style="--x:74%;--y:30%;--w:56px;--r:14deg;--n:6" focusable="false"><use href="assets/memphis.svg#tri"/></svg>
+      <svg class="shape c-paper" viewBox="0 0 71 52" style="--x:88%;--y:8%;--w:56px;--r:-6deg;--n:7" focusable="false"><use href="assets/memphis.svg#bars"/></svg>
+      <svg class="fig fig--tutor" viewBox="0 0 260 490" focusable="false"><use href="assets/memphis.svg#tutor"/></svg>
+      <svg class="fig fig--student" viewBox="0 0 260 500" focusable="false"><use href="assets/memphis.svg#student"/></svg>
+    </div>
+    <div class="sheet" data-tilt>
+      <h1 id="hero-title" class="sheet__title">
+        <span class="line"><span class="line__in" style="--i:0">Teach. We’ll</span></span>
+        <span class="line line--r"><span class="line__in" style="--i:1">handle <span class="hl">the rest.</span></span></span>
+      </h1>
+      <p class="sheet__lead" data-reveal style="--i:2">Launching soon: the platform where private tutors run classes, homework and tests from one place, and get their evenings back.</p>
+      <ul class="tasks" aria-label="What ExamGoEasy will do for you">
+        <li data-reveal style="--i:3"><button class="task" role="checkbox" aria-checked="false" data-auto="0"><svg class="task__box" aria-hidden="true"><use href="#tick"/></svg><span>Class scheduled</span></button></li>
+        <li data-reveal style="--i:4"><button class="task" role="checkbox" aria-checked="false" data-auto="1"><svg class="task__box" aria-hidden="true"><use href="#tick"/></svg><span>Assignment checked</span></button></li>
+        <li data-reveal style="--i:5"><button class="task" role="checkbox" aria-checked="false" data-auto="2"><svg class="task__box" aria-hidden="true"><use href="#tick"/></svg><span>Test graded</span></button></li>
+        <li data-reveal style="--i:6"><button class="task" role="checkbox" aria-checked="false" data-auto="3"><svg class="task__box" aria-hidden="true"><use href="#tick"/></svg><span>Results shared</span></button></li>
+        <li data-reveal style="--i:7"><button class="task task--wait" role="checkbox" aria-checked="false"><svg class="task__box" aria-hidden="true"><use href="#tick"/></svg><span>Your evening is free</span></button></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="product" id="product" aria-labelledby="product-title">
+    <h2 id="product-title" class="head" data-reveal style="--i:0">One place for the <span class="hl">whole class.</span></h2>
+    <p class="product__lead" data-reveal style="--i:1">Schedule classes, set homework, run tests and share results, all from one screen.</p>
+    <figure class="shot" data-ui data-reveal style="--i:2">
+      <div class="art art--product" aria-hidden="true">
+        <svg class="shape c-sky" viewBox="0 0 60 60" style="--x:94%;--y:90%;--w:64px;--r:0deg;--n:1" focusable="false"><use href="assets/memphis.svg#dots"/></svg>
+        <svg class="shape c-coral spin" viewBox="0 0 64 64" style="--x:1%;--y:94%;--w:48px;--r:0deg;--n:2" focusable="false"><use href="assets/memphis.svg#ring"/></svg>
+        <svg class="shape c-sun" viewBox="0 0 96 36" style="--x:42%;--y:98%;--w:100px;--r:-6deg;--n:3" focusable="false"><use href="assets/memphis.svg#squiggle"/></svg>
+        <svg class="fig fig--student" viewBox="0 0 260 500" focusable="false"><use href="assets/memphis.svg#student"/></svg>
+        <svg class="fig fig--tutor" viewBox="0 0 260 490" focusable="false"><use href="assets/memphis.svg#tutor"/></svg>
+      </div>
+      <img class="shot__img" src="assets/shots/dashboard.webp" width="2400" height="1520" alt="The ExamGoEasy tutor dashboard: student, teacher and batch counts, today’s classes and upcoming exams" loading="lazy" decoding="async">
+    </figure>
+  </section>
+
+  <section class="features" id="features" aria-labelledby="features-title">
+    <h2 id="features-title" class="head" data-reveal style="--i:0">Three big jobs, <span class="hl">off your plate.</span></h2>
+    <div class="caps">
+      <article class="cap cap--teal">
+        <h3 class="cap__title">Classes that start on time.</h3>
+        <p class="cap__text">Set your timetable once. Students get the class link and a reminder, so you never have to call anyone.</p>
+        <img class="cap__shot" src="assets/shots/schedule.webp" width="1624" height="848" alt="The Schedule class page: a list of upcoming classes with batch, time, status and a Start class button" loading="lazy" decoding="async">
+        <div class="cap__art" aria-hidden="true">
+          <svg class="shape c-sun" viewBox="0 0 96 36" style="--x:10%;--y:4%;--w:90px;--r:-8deg;--n:1" focusable="false"><use href="assets/memphis.svg#squiggle"/></svg>
+          <svg class="shape c-coral spin" viewBox="0 0 48 48" style="--x:74%;--y:16%;--w:36px;--r:0deg;--n:2" focusable="false"><use href="assets/memphis.svg#plus"/></svg>
+          <svg class="fig fig--tutor" viewBox="0 0 260 490" focusable="false"><use href="assets/memphis.svg#tutor"/></svg>
+        </div>
+      </article>
+      <article class="cap cap--paper">
+        <h3 class="cap__title">Homework that gets checked for you.</h3>
+        <p class="cap__text">Set the work and the deadline. Objective answers are marked as students submit, and you see who is still missing.</p>
+        <img class="cap__shot" src="assets/shots/assignment.webp" width="1624" height="848" alt="The Assignment page: homework across batches with due dates and open status" loading="lazy" decoding="async">
+        <div class="cap__art" aria-hidden="true">
+          <svg class="shape c-coral" viewBox="0 0 80 40" style="--x:8%;--y:6%;--w:80px;--r:10deg;--n:1" focusable="false"><use href="assets/memphis.svg#half"/></svg>
+          <svg class="shape c-sky spin" viewBox="0 0 64 64" style="--x:76%;--y:12%;--w:44px;--r:0deg;--n:2" focusable="false"><use href="assets/memphis.svg#ring"/></svg>
+          <svg class="fig fig--student" viewBox="0 0 260 500" focusable="false"><use href="assets/memphis.svg#student"/></svg>
+        </div>
+      </article>
+      <article class="cap cap--surface">
+        <h3 class="cap__title">Tests graded in seconds.</h3>
+        <p class="cap__text">Build a test, set the timer, and students take it on any device. Scores are ready the moment they finish.</p>
+        <img class="cap__shot" src="assets/shots/test.webp" width="1624" height="804" alt="The Tests page: published and scheduled tests with duration, questions and marks" loading="lazy" decoding="async">
+        <div class="cap__art" aria-hidden="true">
+          <svg class="shape c-sun" viewBox="0 0 96 36" style="--x:8%;--y:4%;--w:84px;--r:6deg;--n:1" focusable="false"><use href="assets/memphis.svg#zigzag"/></svg>
+          <svg class="shape c-sky" viewBox="0 0 64 56" style="--x:78%;--y:14%;--w:44px;--r:12deg;--n:2" focusable="false"><use href="assets/memphis.svg#tri"/></svg>
+          <svg class="fig fig--tutor" viewBox="0 0 260 490" focusable="false"><use href="assets/memphis.svg#tutor"/></svg>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="hours" id="hours" aria-labelledby="hours-title">
+    <h2 id="hours-title" class="head" data-reveal style="--i:0">Get your <span class="hl">evenings</span> back.</h2>
+    <div class="calc" role="group" aria-labelledby="hours-title" data-reveal style="--i:1">
+      <label class="ctl"><span class="ctl__name">How many students do you teach?</span><output class="ctl__val" for="c-students">24</output><input id="c-students" type="range" min="1" max="200" value="24" data-calc="students"></label>
+      <label class="ctl"><span class="ctl__name">Tests per month</span><output class="ctl__val" for="c-tests">4</output><input id="c-tests" type="range" min="1" max="20" value="4" data-calc="tests"></label>
+      <label class="ctl"><span class="ctl__name">Minutes to check one paper</span><output class="ctl__val" for="c-mins">4</output><input id="c-mins" type="range" min="1" max="15" value="4" data-calc="mins"></label>
+      <div class="result" aria-live="polite">
+        <p class="result__big"><span class="result__num" data-out="hours">6.4</span> hours a month spent checking papers.</p>
+        <p class="result__line">That is about <span data-out="days">0.8</span> working days. ExamGoEasy is built to give that time back.</p>
+        <p class="result__note">This is an estimate based on your numbers.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="week" id="week" aria-labelledby="week-title">
+    <h2 id="week-title" class="head" data-reveal style="--i:0">Your week, <span class="hl">handled.</span></h2>
+    <ol class="days" data-reveal style="--i:1">
+      <li><span class="day">Mon</span><p>Class links reach every student.</p></li>
+      <li><span class="day">Tue</span><p>Homework is set and every student sees the deadline.</p></li>
+      <li><span class="day">Wed</span><p>The weekly test opens at 5 pm and closes by itself.</p></li>
+      <li><span class="day">Thu</span><p>Scores are in, and parents see the result.</p></li>
+      <li><span class="day">Fri</span><p>Your weekly report is ready.</p></li>
+      <li><span class="day">Sun</span><p>Nothing to check. Enjoy your day off.</p></li>
+    </ol>
+  </section>
+
+  <section class="reply" id="notify" aria-labelledby="reply-title">
+    <p class="reply__note" data-reveal style="--i:0">Be among the first tutors to try ExamGoEasy.</p>
+    <div class="card" data-reveal style="--i:1">
+      <h2 id="reply-title" class="card__title">Be <span class="hl">first</span> in line.</h2>
+      <p class="card__text">We will send one email on launch day. No spam.</p>
+      <a class="btn btn--bar" href="mailto:hello@examgoeasy.com?subject=Notify%20me%20about%20ExamGoEasy&amp;body=Hi%2C%20please%20let%20me%20know%20when%20ExamGoEasy%20launches.">Notify me at launch</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="back">
+  <svg class="scallops" aria-hidden="true" focusable="false" width="100%" height="24">
+    <defs><pattern id="scp" width="96" height="24" patternUnits="userSpaceOnUse"><circle cx="48" cy="48" r="48"/></pattern></defs>
+    <rect width="100%" height="24" fill="url(#scp)"/>
+  </svg>
+  <div class="back__panel">
+    <div class="back__msg">
+      <h2 class="back__title">See you <span class="hl">soon.</span></h2>
+      <p>ExamGoEasy is built for tutors who want to spend their time teaching, not chasing homework and marking papers. The full website opens on launch day.</p>
+      <a class="btn btn--teal" href="mailto:hello@examgoeasy.com?subject=Notify%20me%20about%20ExamGoEasy&amp;body=Hi%2C%20please%20let%20me%20know%20when%20ExamGoEasy%20launches.">Notify me at launch</a>
+    </div>
+    <div class="back__addr">
+      <div class="post" aria-hidden="true">
+        <svg class="stamp" viewBox="0 0 88 117" focusable="false">
+          <rect width="88" height="117" class="stamp__paper"/>
+          <rect x="6" y="6" width="76" height="105" class="stamp__field"/>
+          <rect x="26" y="38" width="36" height="36" class="stamp__box"/>
+          <use href="#tick" x="26" y="38" width="36" height="36" class="stamp__tick"/>
+        </svg>
+        <svg class="postmark" viewBox="0 0 160 160" focusable="false">
+          <defs><path id="pm" d="M80 80 m-58 0 a58 58 0 1 1 116 0 a58 58 0 1 1 -116 0"/></defs>
+          <circle cx="80" cy="80" r="74" class="pm__ring"/>
+          <circle cx="80" cy="80" r="44" class="pm__ring"/>
+          <text class="pm__text"><textPath href="#pm" textLength="358" lengthAdjust="spacing">LAUNCHING SOON · LAUNCHING SOON · LAUNCHING SOON ·</textPath></text>
+          <use href="#tick" x="58" y="58" width="44" height="44" class="pm__tick"/>
+        </svg>
+      </div>
+      <a href="mailto:hello@examgoeasy.com">hello@examgoeasy.com</a>
+      <span>Launching soon</span>
+    </div>
+    <nav class="back__nav" aria-label="Footer">
+      <a href="#product">Product</a>
+      <a href="#features">Features</a>
+      <a href="#hours">Time saved</a>
+      <a href="#week">Your week</a>
+    </nav>
+    <p class="back__imprint">&copy; 2026 ExamGoEasy. Illustrations are drawn. App screens show sample data.</p>
+    <a class="back__top" href="#top">Back to the top</a>
+  </div>
+  <img class="giant" src="assets/logo-paper-tight.svg" alt="" width="357" height="64">
+</footer>
+
+</body>
+</html>

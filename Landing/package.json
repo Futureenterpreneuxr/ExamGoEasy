@@ -1,0 +1,13 @@
+{
+  "name": "examgoeasy-coming-soon",
+  "version": "1.0.0",
+  "description": "ExamGoEasy coming soon page for private tutors. Static site with a tiny local server.",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "lan": "node server.js --lan"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

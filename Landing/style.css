@@ -1,0 +1,492 @@
+/* ExamGoEasy coming soon: Teal on paper. Hanken Grotesk, one family. */
+
+:root {
+  --paper: #f7f9f8;
+  --surface: #ebf0ee;
+  --teal: #06525c;
+
+  /* Illustration colours only. Never used for text, buttons or controls. */
+  --coral: #f2674b;
+  --sun: #ffc93f;
+  --sky: #7cc6f2;
+
+  --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --step-head: clamp(2rem, 1.3rem + 3.2vw, 4rem);
+
+  --m: clamp(16px, 3vw, 32px);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+  scrollbar-color: var(--teal) var(--surface);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--teal);
+  color: var(--teal);
+  font-family: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: var(--step-body);
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+  font-variant-numeric: tabular-nums;
+  caret-color: var(--teal);
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, p, ul { margin: 0; padding: 0; }
+p { text-wrap: pretty; }
+section[id] { scroll-margin-top: 24px; }
+ul { list-style: none; }
+
+::selection { background: var(--teal); color: var(--paper); }
+.hero ::selection, .back ::selection, .card ::selection, .hours ::selection, .shot ::selection { background: var(--paper); color: var(--teal); }
+
+:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+.bar :focus-visible, .card :focus-visible, .hours :focus-visible { outline-color: var(--paper); }
+
+.skip {
+  position: absolute; left: -999px; top: var(--m); z-index: 10;
+  background: var(--paper); color: var(--teal); padding: 12px 16px; font-weight: 500;
+}
+.skip:focus { left: var(--m); }
+
+/* Buttons: flat, square, one fill */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 48px; padding: 0 24px;
+  border-radius: 0; text-decoration: none;
+  font-size: var(--step-body); font-weight: 500; line-height: 1;
+  transition: transform 160ms var(--ease-out), background-color 160ms ease;
+}
+.btn:active { transform: scale(0.97); }
+.btn--paper { background: var(--paper); color: var(--teal); }
+.btn--bar { width: 100%; min-height: 56px; background: var(--paper); color: var(--teal); margin-top: 8px; }
+.btn--teal { background: var(--teal); color: var(--paper); }
+
+/* Top bar sits on the field */
+.bar {
+  position: absolute; inset: 0 0 auto 0; z-index: 5;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: calc(var(--m) + env(safe-area-inset-top, 0px)) var(--m) 0;
+}
+.mark { --logo-h: clamp(36px, 4vw, 48px); display: block; margin-left: calc(var(--logo-h) * -0.33); }
+.mark img { display: block; height: var(--logo-h); width: auto; }
+.bar__nav { display: flex; gap: clamp(20px, 3vw, 40px); }
+.bar__nav a, .back__top, .back__addr a { display: inline-flex; align-items: center; min-height: 44px; }
+.bar__nav a { color: var(--paper); text-decoration: none; font-weight: 500; transition: opacity 150ms ease; }
+
+/* Curtain: main covers the footer, footer waits underneath */
+main { position: relative; z-index: 1; background: var(--surface); }
+
+/* Hero: teal field, the answer sheet cropped by the screen edge */
+.hero {
+  position: relative; overflow: hidden;
+  height: 100svh; min-height: 620px;
+  padding: clamp(120px, 20svh, 190px) var(--m) 0;
+  background: var(--teal);
+}
+.sheet {
+  position: relative; z-index: 2;
+  width: clamp(340px, 56vw, 760px); max-width: 100%;
+  aspect-ratio: 5 / 7;
+  margin: 0 auto;
+  padding: clamp(28px, 4vw, 56px);
+  background: var(--paper); color: var(--teal);
+  transform: perspective(1200px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 500ms var(--ease-out);
+  animation: sheet-in 900ms var(--ease-out) var(--hold, 0s) both, drift 7s ease-in-out calc(1s + var(--hold, 0s)) infinite;
+}
+.sheet::before, .sheet::after {
+  content: ""; position: absolute; top: -14px; width: 28px; height: 28px;
+  border-radius: 50%; background: var(--teal);
+}
+.sheet::before { left: -14px; }
+.sheet::after { right: -14px; }
+
+@keyframes sheet-in { from { opacity: 0; translate: 0 48px; } to { opacity: 1; translate: 0 0; } }
+@keyframes drift { 50% { translate: 0 -6px; } }
+
+.sheet__title {
+  font-size: var(--step-head); font-weight: 500;
+  line-height: 0.95; letter-spacing: -0.05em;
+}
+.line { display: block; overflow: hidden; padding-bottom: 0.1em; white-space: nowrap; }
+.line--r { text-align: right; }
+.line__in { display: inline-block; }
+
+.sheet__lead { margin-top: 40px; max-width: 42ch; }
+
+.tasks { display: grid; gap: 8px; margin-top: 40px; }
+.task {
+  display: flex; align-items: center; gap: 16px; width: 100%;
+  padding: 14px 20px; border: 0; border-radius: 0;
+  background: var(--surface); color: var(--teal);
+  font: inherit; font-size: var(--step-lead); font-weight: 500; line-height: 1.2; letter-spacing: -0.02em;
+  text-align: left; cursor: pointer;
+  transition: transform 180ms var(--ease-out);
+}
+.task:active { transform: scale(0.99); }
+.task__box {
+  flex: none; width: 28px; height: 28px;
+  background: var(--paper); fill: none; stroke: var(--paper);
+  stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round;
+  stroke-dasharray: 20; stroke-dashoffset: 20;
+  transition: background-color 160ms ease, stroke-dashoffset 360ms var(--ease-out) 80ms;
+}
+.task[aria-checked="true"] .task__box { background: var(--teal); stroke-dashoffset: 0; }
+.task--wait[aria-checked="false"] .task__box { animation: wait 1.6s ease-in-out infinite; }
+@keyframes wait { 50% { transform: scale(0.9); } }
+
+/* Reply card: a printed card lying on the page */
+.reply {
+  position: relative; overflow: hidden;
+  display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--m); align-items: end;
+  min-height: 80svh; padding: 120px var(--m) 0;
+  background: var(--surface);
+}
+.reply__note {
+  grid-column: 1 / 5; align-self: end; margin-bottom: 64px; max-width: 22ch;
+  font-size: var(--step-lead); font-weight: 500; line-height: 1.25; letter-spacing: -0.02em;
+}
+.card {
+  grid-column: 6 / 13; align-self: end; margin-bottom: -60px;
+  min-height: clamp(360px, 34vw, 500px); padding: 48px;
+  display: flex; flex-direction: column; justify-content: center; gap: 16px; text-align: center;
+  background: var(--teal); color: var(--paper);
+  rotate: 2deg;
+}
+.card__title { font-size: var(--step-head); font-weight: 500; line-height: 0.95; letter-spacing: -0.05em; }
+
+/* Sections between the hero and the reply card.
+   Fields alternate: hero teal, product paper, features surface, hours teal, week paper, reply surface. */
+.product, .features, .hours, .week { padding: clamp(88px, 12vw, 180px) var(--m); }
+.head { max-width: 14ch; text-wrap: balance; font-size: var(--step-head); font-weight: 500; line-height: 0.95; letter-spacing: -0.05em; }
+
+/* Product: a real screenshot of the app on a teal board */
+.product { background: var(--paper); }
+.product__lead { max-width: 40ch; margin-top: 32px; }
+.shot { position: relative; margin: 56px 0 0; padding: clamp(16px, 3vw, 40px); background: var(--teal); }
+.shot__img { display: block; width: 100%; height: auto; }
+
+/* Features: three sheets stack as you scroll, each peeking out as a tab */
+.features { background: var(--surface); }
+.caps { margin-top: 64px; }
+.cap {
+  position: sticky; margin-bottom: 20svh;
+  display: grid; grid-template-columns: 1fr 1.25fr minmax(0, 0.6fr); gap: var(--m); align-content: space-between;
+  min-height: clamp(380px, 56svh, 560px); padding: clamp(28px, 4vw, 56px);
+}
+.cap:nth-child(1) { top: 24px; }
+.cap:nth-child(2) { top: 48px; }
+.cap:nth-child(3) { top: 72px; margin-bottom: 0; }
+.cap--teal { background: var(--teal); color: var(--paper); }
+.cap--paper { background: var(--paper); color: var(--teal); }
+.cap--surface { background: var(--teal); color: var(--paper); } /* third sheet returns to teal so it reads against the paper sheet below it */
+.cap--teal .cap__title::selection, .cap--teal .cap__text::selection,
+.cap--surface .cap__title::selection, .cap--surface .cap__text::selection { background: var(--paper); color: var(--teal); }
+.cap__title { grid-column: 1; font-size: var(--step-head); font-weight: 500; line-height: 0.95; letter-spacing: -0.05em; text-wrap: balance; }
+.cap__text { grid-column: 1; align-self: end; max-width: 36ch; }
+.cap__shot { grid-column: 2; grid-row: 1 / span 2; align-self: center; display: block; width: 100%; height: auto; border: 4px solid var(--teal); }
+
+/* Hours: a teal field, sliders on the left, one big number on the right */
+.hours { background: var(--teal); color: var(--paper); }
+.calc { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--m); margin-top: 56px; }
+.ctl { grid-column: 1 / 7; display: grid; grid-template-columns: 1fr auto; row-gap: 12px; margin-bottom: 32px; }
+.ctl__name, .ctl__val { font-size: var(--step-lead); font-weight: 500; letter-spacing: -0.02em; }
+.ctl__val { min-width: 3ch; text-align: right; }
+.ctl input { grid-column: 1 / -1; appearance: none; -webkit-appearance: none; width: 100%; height: 44px; margin: 0; background: transparent; cursor: pointer; }
+.ctl input::-webkit-slider-runnable-track { height: 6px; background: color-mix(in srgb, var(--paper) 30%, var(--teal)); }
+.ctl input::-moz-range-track { height: 6px; background: color-mix(in srgb, var(--paper) 30%, var(--teal)); }
+.ctl input::-webkit-slider-thumb { -webkit-appearance: none; width: 28px; height: 28px; margin-top: -11px; background: var(--paper); border: 0; border-radius: 0; }
+.ctl input::-moz-range-thumb { width: 28px; height: 28px; background: var(--paper); border: 0; border-radius: 0; }
+.result { grid-column: 8 / 13; grid-row: 1 / span 3; align-self: center; }
+.result__big { font-size: var(--step-lead); font-weight: 500; letter-spacing: -0.02em; }
+.result__num { display: block; font-size: clamp(4rem, 2rem + 8vw, 9rem); font-weight: 500; line-height: 0.9; letter-spacing: -0.06em; }
+.result__line { max-width: 36ch; margin-top: 24px; }
+.result__note { margin-top: 16px; font-size: var(--step-small); }
+
+/* Week: a row of days you can swipe or scroll */
+.week { padding-inline: 0; background: var(--paper); }
+.week .head { padding-inline: var(--m); }
+.days {
+  display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--m);
+  margin-top: 56px; padding: 0 var(--m) 24px; scrollbar-color: var(--teal) var(--surface);
+}
+.days li {
+  flex: 0 0 clamp(250px, 26vw, 340px); scroll-snap-align: start;
+  display: flex; flex-direction: column; justify-content: space-between; gap: 48px;
+  min-height: 280px; padding: 28px; background: var(--surface);
+}
+.days li:last-child { background: var(--teal); color: var(--paper); }
+.day { font-size: var(--step-head); font-weight: 500; line-height: 0.9; letter-spacing: -0.05em; }
+.days p { font-size: var(--step-lead); font-weight: 500; line-height: 1.2; letter-spacing: -0.02em; }
+
+/* Corporate Memphis art: drawn people and shapes, behind the content, never interactive */
+.art { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.art svg, .cap__art svg { position: absolute; display: block; height: auto; }
+.fig { transform-origin: 50% 100%; }
+.shape { left: var(--x); top: var(--y); width: var(--w); rotate: var(--r, 0deg); }
+.c-sun { color: var(--sun); } .c-coral { color: var(--coral); } .c-sky { color: var(--sky); } .c-paper { color: var(--paper); }
+
+.art--hero .fig { bottom: 0; width: clamp(150px, 19vw, 290px); }
+.art--hero .fig--tutor { left: clamp(8px, 3vw, 64px); animation: rise 900ms var(--ease-out) calc(500ms + var(--hold, 0s)) both, sway 12s ease-in-out calc(1.4s + var(--hold, 0s)) infinite; }
+.art--hero .fig--student { right: clamp(8px, 3vw, 64px); animation: rise 900ms var(--ease-out) calc(650ms + var(--hold, 0s)) both, sway 14s ease-in-out calc(1.6s + var(--hold, 0s)) infinite reverse; }
+.art--hero .shape { animation: pop 600ms var(--ease-out) calc(700ms + var(--n, 0) * 80ms + var(--hold, 0s)) both, float 7s ease-in-out calc(1.3s + var(--n, 0) * 0.4s + var(--hold, 0s)) infinite alternate; }
+
+.art--product { z-index: 1; }
+.art--product .fig { bottom: calc(100% - 1px); width: clamp(120px, 14vw, 200px); }
+.art--product .fig--student { right: 22%; }
+.art--product .fig--tutor { right: 6%; }
+
+.cap__art { position: relative; pointer-events: none; grid-column: 3; grid-row: 1 / span 2; align-self: stretch; }
+.cap__art .fig { bottom: calc(-1 * clamp(28px, 4vw, 56px)); left: 0; right: 0; margin-inline: auto; width: clamp(150px, 17vw, 240px); }
+.cap--surface .fig { scale: -1 1; }
+
+.art--product .fig, .cap__art .fig { animation: sway 12s ease-in-out infinite; }
+.art--product .shape, .cap__art .shape { animation: float 8s ease-in-out infinite alternate; }
+.shape.spin { animation: pop 600ms var(--ease-out) calc(700ms + var(--n, 0) * 80ms + var(--hold, 0s)) both, spin 24s linear infinite; }
+.art--product .shape.spin, .cap__art .shape.spin { animation: spin 24s linear infinite; }
+@supports (animation-timeline: view()) {
+  .art--product .fig, .cap__art .fig { animation: rise-s linear both, sway 12s ease-in-out infinite; animation-timeline: view(), auto; animation-range: entry 0% entry 70%, normal; }
+}
+@keyframes rise { from { opacity: 0; translate: 0 60px; } }
+@keyframes rise-s { from { opacity: 0; translate: 0 50px; } }
+@keyframes sway { 25% { rotate: 1.5deg; } 75% { rotate: -1.5deg; } }
+@keyframes pop { from { opacity: 0; scale: 0.5; } }
+@keyframes float { to { translate: 0 -12px; } }
+@keyframes spin { to { rotate: calc(var(--r, 0deg) + 360deg); } }
+
+/* Intro: the logo's four bars draw in, then the screen lifts away. Once per visit; never for reduced motion. */
+.intro { display: none; }
+html.has-intro { --hold: 1.15s; }
+html.has-intro .intro {
+  position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; background: var(--teal);
+  animation: intro-out 650ms cubic-bezier(0.77, 0, 0.175, 1) 1050ms forwards;
+}
+.intro svg { width: clamp(96px, 14vw, 168px); height: auto; fill: var(--paper); overflow: visible; }
+.intro path { transform-box: fill-box; transform-origin: left center; animation: bar-draw 520ms var(--ease-out) both; }
+.intro path:nth-child(1) { transform-origin: center top; animation-name: bar-draw-y; }
+.intro path:nth-child(2) { animation-delay: 120ms; }
+.intro path:nth-child(3) { animation-delay: 220ms; }
+.intro path:nth-child(4) { animation-delay: 320ms; }
+@keyframes bar-draw { from { scale: 0 1; } }
+@keyframes bar-draw-y { from { scale: 1 0; } }
+@keyframes intro-out { to { translate: 0 -100%; visibility: hidden; } }
+
+/* Highlighted word: a sun-coloured marker sweeps in behind one word of each headline */
+.hl { position: relative; isolation: isolate; white-space: nowrap; }
+.hl::before { content: ""; position: absolute; inset: 0.1em -0.04em 0.02em; z-index: -1; background: var(--sun); transform-origin: left; }
+.hours .hl, .card .hl { color: var(--teal); }
+.js .hl::before { scale: 0 1; }
+.js .in .hl::before, .js.ready .sheet__title .hl::before, .js .back__panel.in .hl::before { scale: 1 1; transition: scale 700ms var(--ease-out) 450ms; }
+
+/* Week cards: each day gets a tick that pops in as the card arrives (the last day is for rest, so it has none) */
+.days li { position: relative; view-timeline: --card inline; }
+.days li:not(:last-child)::before { content: ""; position: absolute; top: 28px; right: 28px; width: 32px; height: 32px; background: var(--teal); }
+.days li:not(:last-child)::after { content: ""; position: absolute; top: 34px; right: 40px; width: 8px; height: 16px; border: solid var(--paper); border-width: 0 4px 4px 0; rotate: 45deg; }
+@supports (animation-timeline: view()) {
+  .days li:not(:last-child)::before, .days li:not(:last-child)::after { animation: tick-in linear both; animation-timeline: --card; animation-range: entry 50% entry 100%; }
+}
+@keyframes tick-in { from { scale: 0; } }
+
+/* Features: each sheet sinks back a little as the next one arrives (needs scroll timelines; otherwise sheets simply stack) */
+.caps { timeline-scope: --cap2, --cap3; }
+@supports (animation-timeline: view()) {
+  .cap:nth-child(2) { view-timeline: --cap2 block; }
+  .cap:nth-child(3) { view-timeline: --cap3 block; }
+  .cap:nth-child(1), .cap:nth-child(2) { transform-origin: 50% 0; animation: sink linear both; animation-range: entry 0% entry 100%; }
+  .cap:nth-child(1) { animation-timeline: --cap2; }
+  .cap:nth-child(2) { animation-timeline: --cap3; }
+}
+@keyframes sink { to { scale: 0.95; } }
+
+/* Week: Sunday is for rest, so a sun rises over that card and then just breathes */
+.days li:last-child::after { content: ""; position: absolute; top: 24px; right: 24px; width: 72px; height: 72px; border-radius: 50%; background: var(--sun); animation: breathe 5s ease-in-out infinite alternate; }
+@supports (animation-timeline: view()) {
+  .days li:last-child::after { animation: sun-up linear both, breathe 5s ease-in-out infinite alternate; animation-timeline: --card, auto; animation-range: entry 40% entry 100%, normal; }
+}
+@keyframes sun-up { from { translate: 0 70px; opacity: 0; } }
+@keyframes breathe { to { scale: 1.08; } }
+
+/* Cursor follower: a small sun-coloured dot that trails just beside the mouse and becomes a tick over anything clickable. Mouse only. */
+.cursor {
+  position: fixed; top: 0; left: 0; z-index: 90; pointer-events: none;
+  width: 16px; height: 16px; margin: 8px 0 0 8px; border-radius: 50%;
+  background: var(--sun); border: 3px solid var(--teal); opacity: 0;
+  display: grid; place-items: center;
+  transition: opacity 200ms ease, scale 220ms var(--ease-out);
+}
+.cursor.is-on { opacity: 1; }
+.cursor.is-link { scale: 2.2; }
+.cursor svg { width: 8px; height: 8px; fill: none; stroke: var(--teal); stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; opacity: 0; transition: opacity 160ms ease; }
+.cursor.is-link svg { opacity: 1; }
+
+/* Failsafe: if main.js ever fails to load, the hero still appears after four seconds */
+@keyframes show { to { opacity: 1; transform: none; } }
+.js .hero .line__in, .js .hero [data-reveal] { animation: show 0s 4s forwards; }
+
+/* Scroll-driven life: the hero comes apart as you leave it, the board unwraps, the week cards arrive from the side.
+   Progressive enhancement: where the browser lacks scroll timelines, none of this runs and the page simply sits there, complete. */
+@supports (animation-timeline: view()) {
+  .hero { view-timeline: --hero block; }
+
+  .art--hero .fig--tutor {
+    animation: rise 900ms var(--ease-out) calc(500ms + var(--hold, 0s)) both, sway 12s ease-in-out calc(1.4s + var(--hold, 0s)) infinite, par-a linear both;
+    animation-timeline: auto, auto, --hero; animation-range: normal, normal, exit 0% exit 100%;
+  }
+  .art--hero .fig--student {
+    animation: rise 900ms var(--ease-out) calc(650ms + var(--hold, 0s)) both, sway 14s ease-in-out calc(1.6s + var(--hold, 0s)) infinite reverse, par-b linear both;
+    animation-timeline: auto, auto, --hero; animation-range: normal, normal, exit 0% exit 100%;
+  }
+  .art--hero .shape {
+    animation: pop 600ms var(--ease-out) calc(700ms + var(--n, 0) * 80ms + var(--hold, 0s)) both, float 7s ease-in-out calc(1.3s + var(--n, 0) * 0.4s + var(--hold, 0s)) infinite alternate, par-up linear both;
+    animation-timeline: auto, auto, --hero; animation-range: normal, normal, exit 0% exit 100%;
+  }
+  .art--hero .shape.spin {
+    animation: pop 600ms var(--ease-out) calc(700ms + var(--n, 0) * 80ms + var(--hold, 0s)) both, spin 24s linear infinite, par-up linear both;
+    animation-timeline: auto, auto, --hero; animation-range: normal, normal, exit 0% exit 100%;
+  }
+  .sheet {
+    animation: sheet-in 900ms var(--ease-out) var(--hold, 0s) both, drift 7s ease-in-out calc(1s + var(--hold, 0s)) infinite, par-sheet linear both;
+    animation-timeline: auto, auto, --hero; animation-range: normal, normal, exit 0% exit 100%;
+  }
+
+  .shot__img { animation: unwrap linear both; animation-timeline: view(); animation-range: entry 0% entry 80%; }
+
+  .days li { animation: card-in linear both; animation-timeline: view(inline); animation-range: entry 0% entry 100%; }
+}
+@keyframes par-a { to { transform: translateY(16vh); } }
+@keyframes par-b { to { transform: translateY(24vh); } }
+@keyframes par-up { to { transform: translateY(calc(var(--n, 1) * -3vh)); } }
+@keyframes par-sheet { to { scale: 0.93; } }
+@keyframes unwrap { from { clip-path: inset(12% 10% 12% 10%); scale: 1.06; } to { clip-path: inset(0); scale: 1; } }
+@keyframes card-in { from { opacity: 0.35; scale: 0.9; } }
+
+/* Footer: the back of the card. It lifts into view as you reach the end. */
+.back { position: relative; z-index: 0; padding-top: 48px; background: var(--teal); color: var(--paper); }
+.scallops { display: block; width: 83.334%; margin: 0 8.333%; height: 24px; overflow: hidden; }
+.scallops circle { fill: var(--paper); }
+.back__panel {
+  position: relative; margin: 0 8.333%; padding: clamp(28px, 4vw, 56px);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px var(--m); align-items: start;
+  background: var(--paper); color: var(--teal);
+}
+.back__title { font-size: var(--step-head); font-weight: 500; line-height: 0.95; letter-spacing: -0.05em; margin-bottom: 16px; }
+.back__msg p { max-width: 36ch; }
+.back__msg .btn { margin-top: 32px; }
+.back__addr { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; text-align: right; font-size: var(--step-body); }
+.back__addr a, .back__top { color: var(--teal); text-decoration: underline; text-decoration-thickness: 0.08em; text-underline-offset: 0.2em; }
+.post { position: relative; width: min(100%, 240px); height: 160px; margin-bottom: 8px; }
+.stamp { position: absolute; right: 0; top: 0; width: 88px; height: auto; }
+.stamp__paper { fill: var(--surface); }
+.stamp__field { fill: var(--teal); }
+.stamp__box { fill: var(--paper); }
+.stamp__tick { fill: none; stroke: var(--teal); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.postmark { position: absolute; right: 64px; top: 18px; width: 130px; height: auto; rotate: -14deg; }
+.pm__ring { fill: none; stroke: var(--teal); stroke-width: 3; }
+.pm__text { fill: var(--teal); font: 500 11px "Hanken Grotesk", system-ui, sans-serif; }
+.pm__tick { fill: none; stroke: var(--teal); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.back__nav { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; }
+.back__nav a {
+  padding: 14px 20px; background: var(--surface); color: var(--teal); text-decoration: none;
+  font-size: var(--step-lead); font-weight: 500; line-height: 1.2; letter-spacing: -0.02em;
+  transition: background-color 150ms ease, color 150ms ease, transform 160ms var(--ease-out);
+}
+.back__nav a:active { transform: scale(0.97); }
+.back__imprint { align-self: center; font-size: var(--step-small); }
+.back__top { justify-self: end; align-self: center; font-weight: 500; }
+.giant { display: block; width: calc(100% - 2 * var(--m)); height: auto; margin: 40px var(--m) var(--m); }
+@supports (animation-timeline: view()) {
+  .back { animation: lift linear both; animation-timeline: view(); animation-range: entry 0% entry 80%; }
+}
+@keyframes lift { from { transform: translateY(12%); } }
+
+/* Entrances: hidden only when script is running, released by main.js */
+.js .line__in { transform: translateY(105%); }
+.js.ready .line__in { transform: none; transition: transform 800ms var(--ease-out); transition-delay: calc(var(--i, 0) * 80ms); }
+.js [data-reveal], .js .back__panel, .js .giant { opacity: 0; transform: translateY(24px); }
+.js [data-reveal].in, .js .back__panel.in, .js .giant.in {
+  opacity: 1; transform: none;
+  transition: opacity 600ms var(--ease-out), transform 700ms var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn--paper:hover, .btn--bar:hover { background: var(--surface); }
+  .task:hover { transform: translateX(6px); }
+  .task:active { transform: scale(0.99); }
+  .back__addr a:hover, .back__top:hover { text-decoration-thickness: 0.16em; }
+  .back__nav a:hover { background: var(--teal); color: var(--paper); }
+  .btn--teal:hover { background: color-mix(in srgb, var(--teal) 82%, var(--paper)); }
+}
+
+@media (max-width: 760px) {
+  .art--hero, .art--product { display: none; }
+  .hero { padding-top: 96px; padding-inline: 12px; }
+  .sheet { width: 100%; padding: 28px 20px; }
+  .sheet::before, .sheet::after { width: 24px; height: 24px; top: -12px; }
+  .sheet::before { left: -12px; }
+  .sheet::after { right: -12px; }
+  .sheet__lead, .tasks { margin-top: 28px; }
+  .task { padding: 12px 16px; }
+  .reply { display: flex; flex-direction: column; align-items: stretch; justify-content: flex-end; padding-top: 96px; }
+  .reply__note { max-width: none; margin-bottom: 32px; }
+  .card { width: 90%; align-self: center; margin-bottom: -40px; padding: 28px 20px; rotate: 1deg; }
+  .back__panel { grid-template-columns: 1fr; margin-inline: 12px; padding: 28px 20px; }
+  .scallops { width: calc(100% - 24px); margin-inline: 12px; }
+  .back__addr { align-items: flex-start; text-align: left; }
+  .back__top { justify-self: start; }
+  .back__nav a { flex: 1 1 40%; }
+}
+
+
+/* Pieces animate as they scroll in, where the browser supports scroll-linked animation (otherwise they simply sit there, complete) */
+@supports (animation-timeline: view()) {
+  .cap__shot { animation: piece-in linear both; animation-timeline: view(); animation-range: entry 0% entry 70%; }
+}
+@keyframes piece-in { from { opacity: 0; transform: translateY(24px); } }
+
+@media (hover: hover) and (pointer: fine) {
+  .bar__nav a:hover { opacity: 0.7; }
+}
+
+@media (max-width: 900px) {
+  .bar__nav { display: none; }
+  .cap { grid-template-columns: 1fr 1fr; }
+  .cap__art { display: none; }
+  .result { grid-column: 1 / -1; grid-row: auto; margin-top: 24px; }
+  .ctl { grid-column: 1 / -1; }
+}
+
+@media (max-width: 760px) {
+  .product, .features, .hours, .week { padding-block: 88px; }
+  .caps { margin-top: 40px; }
+  .cap { grid-template-columns: 1fr; min-height: 0; gap: 24px; margin-bottom: 12svh; }
+  .cap__title, .cap__text, .cap__shot { grid-column: 1; grid-row: auto; }
+  .days li { min-height: 220px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .sheet { animation: none; transition: none; transform: none; }
+  .task--wait[aria-checked="false"] .task__box { animation: none; }
+  .js .line__in, .js [data-reveal], .js .back__panel, .js .giant { transform: none; }
+  .task:hover, .btn:active, .task:active { transform: none; }
+  .days { scroll-behavior: auto; }
+  .back { animation: none; }
+  .art svg, .cap__art svg { animation: none; }
+  .art--hero .fig, .art--hero .shape, .sheet, .shot__img, .days li { animation: none !important; }
+  .hl::before { scale: 1 1 !important; transition: none !important; }
+  .cap { animation: none !important; }
+  .cursor { display: none; }
+  .days li::before, .days li::after { animation: none !important; }
+}
